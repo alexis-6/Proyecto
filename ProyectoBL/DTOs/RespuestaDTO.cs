@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ProyectoBL.DTOs
 {
-    public class RespuestaRequerimientoDTO
+    public class RespuestaDTO
     {
         [JsonProperty("Code")]
         public int Code { get; set; }

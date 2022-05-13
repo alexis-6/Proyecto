@@ -12,7 +12,7 @@ namespace ProyectoBL.Models
             Requerimientos = new HashSet<Requerimiento>();
         }
 
-        public int IdPrioridad { get; set; }
+        public int? IdPrioridad { get; set; }
         public string DPrioridad { get; set; }
 
         public virtual ICollection<Requerimiento> Requerimientos { get; set; }

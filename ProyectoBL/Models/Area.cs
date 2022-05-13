@@ -12,7 +12,7 @@ namespace ProyectoBL.Models
             Requerimientos = new HashSet<Requerimiento>();
         }
 
-        public int IdArea { get; set; }
+        public int? IdArea { get; set; }
         public string DArea { get; set; }
 
         public virtual ICollection<Requerimiento> Requerimientos { get; set; }

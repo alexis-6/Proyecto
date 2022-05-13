@@ -7,7 +7,7 @@ namespace ProyectoBL.Models
 {
     public partial class Requerimiento
     {
-        public int IdRequerimiento { get; set; }
+        public int? IdRequerimiento { get; set; }
         public int IdArea { get; set; }
         public int IdEncargado { get; set; }
         public int IdPrioridad { get; set; }

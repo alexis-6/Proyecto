@@ -9,10 +9,11 @@ namespace ProyectoBL.DTOs
     public class PrioridadDTO
     {
         [JsonProperty("IdPrioridad")]
-        public int IdPrioridad { get; set; }
+        public int? IdPrioridad { get; set; }
 
         [JsonProperty("DPrioridad")]
-        [Required]
+        [Required(ErrorMessage = "El campo DPrioridad es requerido")]
+        [StringLength(10)]
         public string DPrioridad { get; set; }
     }
     public class PrioridadOutputDTO

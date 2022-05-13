@@ -9,10 +9,11 @@ namespace ProyectoBL.DTOs
     public class AreaDTO
     {
         [JsonProperty("IdArea")]
-        public int IdArea { get; set; }
+        public int? IdArea { get; set; }
 
         [JsonProperty("DArea")]
-        [Required]
+        [Required(ErrorMessage = "El campo DArea es requerido")]
+        [StringLength(50)]
         public string DArea { get; set; }
     }
     public class AreaOutputDTO

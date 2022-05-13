@@ -5,21 +5,19 @@ using Microsoft.EntityFrameworkCore;
 using ProyectoBL.DTOs;
 using ProyectoBL.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 
 namespace Proyecto.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AreasController : ControllerBase
+    public class EncargadosController : ControllerBase
     {
         private readonly BdParcialContext context;
         private readonly IMapper mapper;
 
-        public AreasController(BdParcialContext context, IMapper mapper)
+        public EncargadosController(BdParcialContext context, IMapper mapper)
         {
             this.context = context;
             this.mapper = mapper;
@@ -28,22 +26,21 @@ namespace Proyecto.API.Controllers
         [Route("GetAll")]
         public IActionResult GetAll()
         {
-            var areas = context.Areas.ToList();
-            return Ok(new RespuestaDTO { Code = (int)HttpStatusCode.OK, Data = areas, Message = "Se retorno la información con exíto" });
+            var encargados = context.Encargados.ToList();
+            return Ok(new RespuestaDTO { Code = (int)HttpStatusCode.OK, Data = encargados, Message = "Se retorno la información con exíto" });
         }
         [HttpGet]
         [Route("GetById/{id}")]
         public IActionResult GetById(int id)
         {
-            var area = context.Areas.Find(id);
-            if (area == null)
+            var encargado = context.Encargados.Find(id);
+            if (encargado == null)
                 return NotFound(new RespuestaDTO { Code = (int)HttpStatusCode.NotFound, Message = "NotFound" });
 
-            return Ok(new RespuestaDTO { Code = (int)HttpStatusCode.OK, Data = area, Message = "Se retorno la información con exíto" });
+            return Ok(new RespuestaDTO { Code = (int)HttpStatusCode.OK, Data = encargado, Message = "Se retorno la información con exíto" });
         }
         [HttpPost]
-        [Route("Create")]
-        public IActionResult Post(AreaDTO areaDTO)
+        public IActionResult Post(EncargadoDTO encargadoDTO)
         {
             try
             {
@@ -53,13 +50,13 @@ namespace Proyecto.API.Controllers
                         Code = (int)HttpStatusCode.BadRequest,
                         Message = string.Join(",", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
                     });
-                areaDTO.IdArea = null;
-                areaDTO.DArea = areaDTO.DArea.ToString().Trim();
-                var area = context.Areas.Add(mapper.Map<Area>(areaDTO)).Entity;
+                encargadoDTO.IdEncargado = null;
+                encargadoDTO.NombreEncargado = encargadoDTO.NombreEncargado.ToString().Trim();
+                var encargado = context.Encargados.Add(mapper.Map<Encargado>(encargadoDTO)).Entity;
                 context.SaveChanges();
-                areaDTO.IdArea = area.IdArea;
+                encargadoDTO.IdEncargado = encargado.IdEncargado;
 
-                return Ok(new RespuestaDTO { Code = (int)HttpStatusCode.OK, Data = areaDTO, Message = "Se guardo la información exitosamente" });
+                return Ok(new RespuestaDTO { Code = (int)HttpStatusCode.OK, Data = encargadoDTO, Message = "Se guardo la información exitosamente" });
             }
             catch (Exception ex)
             {
@@ -67,11 +64,11 @@ namespace Proyecto.API.Controllers
             }
         }
         [HttpPut("{id}")]
-        public IActionResult Put(int id, AreaDTO areaDTO)
+        public IActionResult Put(int id, EncargadoDTO encargadoDTO)
         {
-            if (areaDTO.IdArea == null || areaDTO.IdArea <= 0)
+            if (encargadoDTO.IdEncargado == null || encargadoDTO.IdEncargado <= 0)
             {
-                return BadRequest(new RespuestaDTO { Code = (int)HttpStatusCode.BadRequest, Message = "El campo IdArea es incorrecto" });
+                return BadRequest(new RespuestaDTO { Code = (int)HttpStatusCode.BadRequest, Message = "El campo IdEncargado es incorrecto" });
             }
             try
             {
@@ -82,16 +79,16 @@ namespace Proyecto.API.Controllers
                         Message = string.Join(",", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
                     });
 
-                var area = context.Areas.Find(id);
-                if (area == null)
+                var encargado = context.Encargados.Find(id);
+                if (encargado == null)
                     return NotFound(new RespuestaDTO { Code = (int)HttpStatusCode.NotFound, Message = "NotFound" });
 
-                areaDTO.DArea = areaDTO.DArea.ToString().Trim();
-                context.Entry(area).State = EntityState.Detached;
-                context.Areas.Update(mapper.Map<Area>(areaDTO));
+                encargadoDTO.NombreEncargado = encargadoDTO.NombreEncargado.ToString().Trim();
+                context.Entry(encargado).State = EntityState.Detached;
+                context.Encargados.Update(mapper.Map<Encargado>(encargadoDTO));
                 context.SaveChanges();
 
-                return Ok(new RespuestaDTO { Code = (int)HttpStatusCode.OK, Data = areaDTO });
+                return Ok(new RespuestaDTO { Code = (int)HttpStatusCode.OK, Data = encargadoDTO, Message = "Se actualizo el registro con exíto" });
             }
             catch (Exception ex)
             {
@@ -103,10 +100,10 @@ namespace Proyecto.API.Controllers
         {
             try
             {
-                var area = context.Areas.Find(id);
-                if (area == null)
+                var encargado = context.Encargados.Find(id);
+                if (encargado == null)
                     return NotFound(new RespuestaDTO { Code = (int)HttpStatusCode.NotFound, Message = "NotFound" });
-                context.Areas.Remove(area);
+                context.Encargados.Remove(encargado);
                 context.SaveChanges();
                 return Ok(new RespuestaDTO { Code = (int)HttpStatusCode.OK, Message = "Se ha eliminado el registro con exito." });
             }

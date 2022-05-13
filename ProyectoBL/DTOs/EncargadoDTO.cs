@@ -9,10 +9,11 @@ namespace ProyectoBL.DTOs
     public class EncargadoDTO
     {
         [JsonProperty("IdEncargado")]
-        public int IdEncargado { get; set; }
+        public int? IdEncargado { get; set; }
 
         [JsonProperty("NombreEncargado")]
-        [Required]
+        [Required(ErrorMessage = "El campo NombreEncargado es requerido")]
+        [StringLength(30)]
         public string NombreEncargado { get; set; }
     }
     public class EncargadoOutputDTO

@@ -9,33 +9,36 @@ namespace ProyectoBL.DTOs
     public class RequerimientoDTO
     {
         [JsonProperty("IdRequerimiento")]
-        public int IdRequerimiento { get; set; }
-        [Required]
+        public int? IdRequerimiento { get; set; }
 
         [JsonProperty("IdArea")]
-        public int IdArea { get; set; }
         [Required]
+        public int IdArea { get; set; }
 
         [JsonProperty("IdEncargado")]
-        public int IdEncargado { get; set; }
         [Required]
+        public int IdEncargado { get; set; }
 
         [JsonProperty("IdPrioridad")]
-        public int IdPrioridad { get; set; }
         [Required]
+        public int IdPrioridad { get; set; }
 
         [JsonProperty("Aplicativo")]
-        public string Aplicativo { get; set; }
         [Required]
+        [StringLength(500)]
+        public string Aplicativo { get; set; }
 
         [JsonProperty("Alcance")]
-        public string Alcance { get; set; }
         [Required]
+        [StringLength(500)]
+        public string Alcance { get; set; }
 
         [JsonProperty("FechaSolicitud")]
+        [Required]
         public DateTime FechaSolicitud { get; set; }
 
         [JsonProperty("FechaDesarrollo")]
+        [Required]
         public DateTime FechaDesarrollo { get; set; }
 
         [JsonProperty("DiasDesarrollo")]
@@ -43,6 +46,7 @@ namespace ProyectoBL.DTOs
         public int DiasDesarrollo { get; set; }
 
         [JsonProperty("FechaPrueba")]
+        [Required]
         public DateTime FechaPrueba { get; set; }
     }
     public class RequerimientoOutputDTO

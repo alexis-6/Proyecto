@@ -36,10 +36,10 @@ namespace Proyecto.API
 
             services.AddOpenApiDocument(document =>
             {
-                document.Title = "Primer parcial";
-                document.Description = "El parcial demuestra es una aplicación construida en .NET Core " +
+                document.Title = "App web API";
+                document.Description = "Aplicación construida en .NET Core " +
                         "con motor de base de datos en SQL Server para la universidad autonoma del caribe. " +
-                        "Incluye funcionalidades como creación de requerimientos de software";
+                        "Incluye funcionalidades como: CRUD de requerimientos, areas, prioridades y encargados. ";
             });
 
             services.AddCors(options =>

@@ -19,7 +19,7 @@ namespace ProyectoBL.Models
 
         public virtual DbSet<Area> Areas { get; set; }
         public virtual DbSet<Encargado> Encargados { get; set; }
-        public virtual DbSet<Prioridad> Prioridads { get; set; }
+        public virtual DbSet<Prioridad> Prioridades { get; set; }
         public virtual DbSet<Requerimiento> Requerimientos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
